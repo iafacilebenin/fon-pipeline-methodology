@@ -155,13 +155,65 @@ first confirmed zero-shot phonological activation.
 
 ---
 
+## Update — March 28, 2026: Acoustic Calibration v2
+
+**Second breakthrough:** precise quantification of the Fɔngbè voice profile
+via a 6-layer acoustic analysis pipeline applied to a 51-second native speaker recording.
+
+### The 6-Layer Analysis
+
+| Layer | Method | What it measures |
+|-------|--------|-----------------|
+| 1 | F0 Extraction (WORLD D4C) | Fundamental frequency tracking |
+| 2 | ARMA Spectral Modeling | AutoRegressive Moving Average formant estimation |
+| 3 | Burg Formants | Maximum entropy F1/F2/F3 tracking |
+| 4 | Nasalization Mapping | Spectral flatness + nasal murmur index per phoneme |
+| 5 | ESPRIT Prosody | Tone contour recovery via rotational invariance |
+| 6 | WORLD Re-synthesis | Calibrated output vs. raw source comparison |
+
+### Calibrated Voice Parameters
+
+```
+BASE_F0        113.0 Hz      Median F0 — Lordy voice DNA
+HIGH target    137.8 Hz      +3.5 semitones → MULT_HIGH = 1.2195
+LOW target      97.9 Hz      -2.5 semitones → MULT_LOW  = 0.8664
+PAUSE          200 ms        Reduced from 600ms (32% silence gap eliminated)
+
+RF contour:
+  0%  → -2.9st / 0.845x   (onset)
+  50% → +4.0st / 1.260x   (apex — peak tonal excursion)
+  100% → 0st  / 1.000x    (return to neutral)
+```
+
+### Accuracy Results
+
+| Measure | Score | Grade | Notes |
+|---------|-------|-------|-------|
+| RAW synthesis | 87.9% | A | F0, formants, nasality match |
+| WORLD vocoder | 66.2% | B | Jitter & spectral flatness: next target |
+
+The 21.7-point gap identifies **jitter modeling** and **spectral flatness reproduction**
+as the remaining open challenges for fully native-accurate synthesis.
+
+### Key Statement
+
+> The ESPRIT-based prosody recovery combined with ARMA/Burg dual-formant estimation
+> produced a stable, reproducible voice profile for Fɔngbè tonal synthesis using a single
+> 51-second reference recording — no additional training data required.
+> The calibration is deterministic and transferable.
+
+**Proof document:** `ots-proofs/FonTTS_AcousticCalibration_v2_28mars2026.pdf`
+
+---
+
 ## IP Protection
 
 - **Blockchain timestamp:** OriginStamp — March 17, 2026  
 - **Hash SHA-256:** `196346750f28116b9babdfeeeef00796db6a98d4acc1a3a75714f7cda6a7061a`  
 - **Prior art email:** iafacilebenin@gmail.com — March 16, 2026  
 - **Public corpus:** Hugging Face — March 16, 2026  
-- **IP Declaration PDF:** Available on request  
+- **IP Declaration PDF:** Available on request
+- **Calibration v2 proof:** `ots-proofs/FonTTS_AcousticCalibration_v2_28mars2026.pdf` — March 28, 2026  
 
 ---
 
